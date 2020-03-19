@@ -31,9 +31,9 @@
              Usuario
            </div>
            <div class="form-group">
-             <input type="text" [(ngModel)]="selectedEmployee.nombre" name="nombre" id="nombre" placeholder="Ingresar nombre" class="form-control">
-             <input type="number" [(ngModel)]="selectedEmployee.salario" name="salario" id="salario" placeholder="Ingresar salario" class="form-control">
-             <input type="number" [(ngModel)]="selectedEmployee.edad" name="edad" id="edad" placeholder="Ingresar edad" class="form-control">
+             <input type="text" [(ngModel)]="selectedEmployee.employee_name" name="nombre" id="nombre" placeholder="Ingresar nombre" value="Leticia" class="form-control">
+             <input type="number" [(ngModel)]="selectedEmployee.employee_salary" name="salario" id="salario" placeholder="Ingresar salario" value="3000" class="form-control">
+             <input type="number" [(ngModel)]="selectedEmployee.employee_age" name="edad" id="edad" placeholder="Ingresar edad" value="45" class="form-control">
             <button (click)="Envio()" class="btn btn-primary">
               Submit
             </button>
@@ -43,3 +43,5 @@
     </div>
   </div>
 </div>
+
+<p>{{employeeTemp |json}}</p>

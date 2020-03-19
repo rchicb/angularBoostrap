@@ -1,7 +1,7 @@
 export class Employee {
 
     id:number=0; 
-    nombre:string;
-    salario:number;
-    edad:number;
+    employee_name:string;
+    employee_salary:number;
+    employee_age:number;
 }
