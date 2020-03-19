@@ -12,7 +12,7 @@ export class ConsumoService {
   // urpApi:string ='http://dummy.restapiexample.com/api/v1/employees';
   constructor(private http:HttpClient) { }
 
-  obtenerValores(){
+  getEmployee(){
     return this.http.get<Employee[]>(this.urpApi).pipe(
       map(datos=>{
         return datos;
@@ -21,8 +21,17 @@ export class ConsumoService {
     );
   }
 
-  agregarEmployee(employeeSend:Employee){
+  postEmployee(employeeSend:Employee){
    return this.http.post<Employee>(this.urpApi,employeeSend);
+  }
+
+
+  putEmployee(employeeSend:Employee){
+    return this.http.put<Employee>(this.urpApi+'/'+employeeSend.id,employeeSend);
+  }
+
+  deleteEmployee(employeeSend:Employee){
+    return this.http.delete<Employee>(this.urpApi+'/'+employeeSend.id);
   }
 
 }

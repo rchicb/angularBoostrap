@@ -15,8 +15,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let employee of employeeList" (click)="Editar(employee)" [class.table-active]="employee==selectedEmployee">
-            <th scope="row"><span class="badge badge-primary">{{employee.id}}</span></th>
+          <tr *ngFor="let employee of employeeList; let i=index" (click)="Editar(employee)" [class.table-active]="employee==selectedEmployee">
+            <th scope="row"><span class="badge badge-primary">{{i+1}}</span></th>
             <td>{{employee.employee_name}}</td>
             <td>{{employee.employee_salary}}</td>
             <td>{{employee.employee_age}}</td>
@@ -37,11 +37,12 @@
             <button (click)="Envio()" class="btn btn-primary">
               Submit
             </button>
+            <button class="btn btn-danger" (click)="Delete()">
+              Delete
+            </button>
             </div>
          </div>
       </div>
     </div>
   </div>
 </div>
-
-<p>{{employeeTemp |json}}</p>

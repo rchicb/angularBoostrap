@@ -22,13 +22,16 @@ export class AppComponent implements OnInit{
   constructor(private consumo:ConsumoService){}
 
   ngOnInit() {
-    this.consumo.obtenerValores().subscribe(
+    this.obtenerListadoEmployees();
+  }
+
+  obtenerListadoEmployees(){
+    this.consumo.getEmployee().subscribe(
       datos=>{
         this.employeeList=datos;
       }
     );
   }
-
 
   Envio(){
 
@@ -38,11 +41,25 @@ export class AppComponent implements OnInit{
       // this.selectedEmployee.id=this.employeeArray.length +1;
       // this.employeeArray.push(this.selectedEmployee);
 
-      this.consumo.agregarEmployee(this.selectedEmployee).subscribe(
+      this.consumo.postEmployee(this.selectedEmployee).subscribe(
         datos=>{
           this.employeeTemp= datos;
+          this.employeeList.push(this.employeeTemp);
         }
       );
+ 
+    }else{
+
+      this.consumo.putEmployee(this.selectedEmployee).subscribe(
+        datos=>{
+          // let index=this.employeeList.indexOf(this.selectedEmployee);
+          // this.employeeList.includes()
+          console.log(datos);
+          //this.selectedEmployee=datos;
+
+        }
+      )
+
     }
   
     this.selectedEmployee =new Employee();
@@ -53,6 +70,21 @@ export class AppComponent implements OnInit{
     // this.selectedEmployee.nombre=employeeEdit.nombre;
     // this.selectedEmployee.salario=employeeEdit.salario;
     // this.selectedEmployee.edad=employeeEdit.edad;
+
+  }
+
+  Delete(){
+
+    if(confirm('Are you sure you want to delete it? ')){
+      this.consumo.deleteEmployee(this.selectedEmployee).subscribe(
+        datos=>{
+          return datos;
+        }
+      )    
+    }
+
+    this.employeeList=this.employeeList.filter(x => x !=this.selectedEmployee);
+    this.selectedEmployee=new Employee();
 
   }
 }
